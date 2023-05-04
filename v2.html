@@ -59,13 +59,15 @@
         var direction = new BABYLON.Vector3(Math.random() - 0.5, 0, Math.random() - 0.5).normalize();
 
         // 更新 glTF 模型的位置
+        var direction = new BABYLON.Vector3(Math.random() - 0.5, 0, Math.random() - 0.5).normalize();
+
         scene.onBeforeRenderObservable.add(function () {
           myObject.position = myObject.position.add(direction.scale(speed));
-          // 如果 glTF 模型碰到地面边缘，反弹
-          if (myObject.position.x > 20  || myObject.position.x < 0 ) {
+
+          if (myObject.position.x > 10 || myObject.position.x < -10) {
             direction = new BABYLON.Vector3(direction.x * -1, direction.y, direction.z);
           }
-          if (myObject.position.y > 20  || myObject.position.y < 0) {
+          if (myObject.position.z > 10 || myObject.position.z < -10) {
             direction = new BABYLON.Vector3(direction.x, direction.y, direction.z * -1);
           }
         });
